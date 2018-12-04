@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AdventOfCodeDayOne
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<string> values = File.ReadLines("Values.txt").ToList();
+            int threes = 0;
+            int twos = 0;
+            foreach (string value in values)
+            {
+                Dictionary<char, int> dir = new Dictionary<char, int>();
+                foreach (char letter in value)
+                {
+                    if (!dir.ContainsKey(letter))
+                    {
+                        dir.Add(letter, 1);
+                    }
+                    else
+                    {
+                        dir[letter] += 1;
+                    }
+                }
+                if (dir.ContainsValue(2))
+                {
+                    twos += 1;
+                }
+                if (dir.ContainsValue(3))
+                {
+                    threes += 1;
+                }
+
+            }
+            Console.WriteLine(twos * threes);
+            Console.ReadLine();
+        }
+    }
+}
