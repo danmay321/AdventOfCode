@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AdventOfCodeDayOne
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<string> values = File.ReadLines("Values.txt").ToList();
+            int finalValue = 0;
+            bool duplicateFound = false;
+            List<int> foundValues = new List<int>();
+            while (!duplicateFound)
+            {
+                foreach (string value in values)
+                {
+                    finalValue += int.Parse(value);
+                    if (!foundValues.Contains(finalValue))
+                    {
+                        foundValues.Add(finalValue);
+                    }
+                    else
+                    {
+                        duplicateFound = true;
+                        break;
+                    }
+                    
+                }
+            }
+            Console.WriteLine(finalValue);
+            Console.ReadLine();
+        }
+    }
+}
